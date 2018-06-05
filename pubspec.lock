@@ -186,6 +186,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.1"
+  octal_clock:
+    dependency: "direct main"
+    description:
+      name: octal_clock
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5"
   package_config:
     dependency: transitive
     description:

@@ -1,0 +1,3 @@
+enum ClockFaceType {
+  text,
+}
