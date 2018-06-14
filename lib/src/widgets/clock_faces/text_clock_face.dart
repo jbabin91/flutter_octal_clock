@@ -1,19 +1,17 @@
 part of clock_face_widget;
 
-// 0-padding for hours/minutes/seconds
 String twoDigits(int d) {
   if (d < 10) return '0$d';
   return d.toString();
 }
 
-// 0-padding for milliseconds
 String threeDigits(int d) {
   if (d < 10) return '00$d';
   if (d < 100) return '0$d';
   return d.toString();
 }
 
-/// A clock face that displays the time as a normal looking text String
+/// A clock face that displays the time as a normal looking text string
 class _TextClockFace extends StatelessWidget implements ClockFaceWidget {
   final _ClockData data;
 
@@ -21,21 +19,17 @@ class _TextClockFace extends StatelessWidget implements ClockFaceWidget {
   static const MIN_SIZE = 10.0;
   static const SIZE_RANGE = 40.0;
 
-  const _TextClockFace({
-    Key key,
-    @required this.data,
-  })  : assert(data != null),
+  const _TextClockFace({Key key, @required this.data})
+      : assert(data != null),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Only display milliseconds if they were passed as data
     final String millisecondStr =
-        data.millisecond != null ? '.$threeDigits(data.millisecond)' : '';
+        data.millisecond != null ? '.${threeDigits(data.millisecond)}' : '';
 
-    // Format our date string
-    final String timeStr =
-        '$twoDigits(date.hour):$twoDigits(date.minute):$twoDigits(date.second)$millisecondStr';
+    final String timeStr = '${twoDigits(data.hour)}:${twoDigits(data.minute)}:'
+        '${twoDigits(data.second)}$millisecondStr';
 
     final double fontSize = MIN_SIZE + (SIZE_RANGE * data.heightFactor);
 
@@ -46,10 +40,7 @@ class _TextClockFace extends StatelessWidget implements ClockFaceWidget {
     return new Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        new Text(
-          timeStr,
-          style: textStyle,
-        ),
+        new Text(timeStr, style: textStyle),
       ],
     );
   }

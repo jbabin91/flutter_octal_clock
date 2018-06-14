@@ -1,13 +1,18 @@
 library clock_face_widget;
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:octal_clock/octal_clock.dart';
 
+import '../digital_font/digital_font.dart';
 import 'clock_face_type.dart';
 
 part './clock_data.dart';
 part './text_clock_face.dart';
+part './analog_clock_face.dart';
+part './digital_clock_face.dart';
 
 /// A widget factory to create a given Clock Face based on its typedef
 abstract class ClockFaceWidget implements StatelessWidget {
@@ -40,6 +45,10 @@ abstract class ClockFaceWidget implements StatelessWidget {
     );
 
     switch (type) {
+      case ClockFaceType.analog:
+        return new _AnalogClockFace(data: clockData);
+      case ClockFaceType.digital:
+        return new _DigitalClockFace(data: clockData);
       case ClockFaceType.text:
       default:
         return new _TextClockFace(
